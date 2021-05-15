@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Game implements KeyListener {
 	private Snake snake;
@@ -12,35 +13,39 @@ public class Game implements KeyListener {
 
 	private JFrame window;
 	private GameGraphics gameGFX;
+	private long inputSleep;
 	
 	public static final int WIDTH = 50, HEIGHT = 50, DIM = 20;
 
 	public Game() {
-		window = new JFrame();
+		this.window = new JFrame();
 		
 		this.snake = new Snake();
 		this.fruit = new Fruit(this.snake);
+		this.inputSleep = 100;
 		
 		this.gameGFX = new GameGraphics(this);
-		window.add(gameGFX);
+		this.window.add(gameGFX);
 
-		window.setTitle("JavaSnake");
-		window.setSize(WIDTH * DIM + 2, HEIGHT * DIM + DIM + 4);
-		window.setVisible(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.window.setTitle("JavaSnake");
+		this.window.setSize(WIDTH * DIM + 2, HEIGHT * DIM + DIM + 4);
+		this.window.setVisible(true);
+		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void update() {
 		if (this.gameGFX.getGameState() == GameState.RUNNING) {
 			if (this.collideFruit()) {
-				System.out.println("Eaten fruit");
 				this.snake.elongate();
 				this.fruit.spawnFruit(this.snake);
+				
+				if (this.inputSleep > 20 && this.fruit.getFruitEaten() % 5 == 0) {
+					this.inputSleep -= 20;
+					this.gameGFX.setTimer(this.inputSleep);
+				}
 			}
 			
 			if (this.collideWall() || this.collideSelf()) {
-				System.out.println("Collided with something");
 				this.gameGFX.setGameState(GameState.GAMEOVER);
 			}
 			
@@ -83,13 +88,14 @@ public class Game implements KeyListener {
 		if (gameGFX.getGameState() == GameState.RUNNING) {
 			if ((KEY == KeyEvent.VK_W || KEY == KeyEvent.VK_UP) && SNAKE_DIR != Movement.DOWN)
 				this.snake.setSnakeDirection(Movement.UP);
-			if ((KEY == KeyEvent.VK_S || KEY == KeyEvent.VK_DOWN) && SNAKE_DIR != Movement.UP)
+			else if ((KEY == KeyEvent.VK_S || KEY == KeyEvent.VK_DOWN) && SNAKE_DIR != Movement.UP)
 				this.snake.setSnakeDirection(Movement.DOWN);
-			if ((KEY == KeyEvent.VK_A || KEY == KeyEvent.VK_LEFT) && SNAKE_DIR != Movement.RIGHT)
+			else if ((KEY == KeyEvent.VK_A || KEY == KeyEvent.VK_LEFT) && SNAKE_DIR != Movement.RIGHT)
 				this.snake.setSnakeDirection(Movement.LEFT);
-			if ((KEY == KeyEvent.VK_D || KEY == KeyEvent.VK_RIGHT) && SNAKE_DIR != Movement.LEFT)
+			else if ((KEY == KeyEvent.VK_D || KEY == KeyEvent.VK_RIGHT) && SNAKE_DIR != Movement.LEFT)
 				this.snake.setSnakeDirection(Movement.RIGHT);
 		}
+		
 	}
 	
 	@Override
@@ -106,5 +112,4 @@ public class Game implements KeyListener {
 		return this.fruit;
 	}
 	
-
 }

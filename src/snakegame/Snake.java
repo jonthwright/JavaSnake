@@ -30,7 +30,6 @@ public class Snake {
     
 	public void elongate() {
 		Rectangle snakeHead = this.snakeBody.get(0);
-		System.out.println("Snake head at: " + snakeHead.x / Game.DIM + " " + snakeHead.y / Game.DIM);
 		Rectangle tmpRect = new Rectangle(Game.DIM, Game.DIM);
 			
 		if (this.snakeDirection == Movement.UP) tmpRect.setLocation(snakeHead.x, snakeHead.y - Game.DIM);
@@ -54,7 +53,8 @@ public class Snake {
 	}
 	
 	public void setSnakeDirection(Movement snakeDirection) {
-		//System.out.println("Snake direction changed: " + snakeDirection);
+		/* Make additional checks for changing snake direction so that the snake doesn't collide with itself due
+		quick succession of snake direction changes (quick key inputs). */
 		this.snakeDirection = snakeDirection;
 	}
 	

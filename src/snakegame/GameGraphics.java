@@ -24,6 +24,7 @@ public class GameGraphics extends JPanel implements ActionListener {
 		
 		
 		this.addKeyListener(game);
+		this.setBackground(Color.BLACK  );
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 	}
@@ -64,7 +65,7 @@ public class GameGraphics extends JPanel implements ActionListener {
 		
 		if (this.gameState == GameState.GAMEOVER) {
 			g2d.setColor(Color.WHITE);
-			g2d.drawString("THE SNAKE HAS EATEN " + this.fruit.getFruitNum() + " FRUITS", (WIDTH / 2) * DIM - 40, (HEIGHT / 2) * DIM - 20);
+			g2d.drawString("THE SNAKE HAS EATEN " + this.fruit.getFruitEaten() + " FRUITS", (WIDTH / 2) * DIM - 40, (HEIGHT / 2) * DIM - 20);
 			
 			return;
 		}
@@ -83,6 +84,10 @@ public class GameGraphics extends JPanel implements ActionListener {
 	
 	public GameState getGameState() {
 		return this.gameState;
+	}
+	
+	public void setTimer(long milliseconds) {
+		this.timer = new Timer(100, this);
 	}
 	
 }
