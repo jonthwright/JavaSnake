@@ -19,11 +19,13 @@ The snake will elongate each time a fruit is eaten and will move faster after a 
 
 The following controls that are required to play the game includes:
 
-* Spacebar or Arrow keys or WASD keys: Start game (only when on the main menu)
+* Spacebar or Arrow keys or WASD keys: Start a new game (only when on the main menu)
 * W-key/Up arrow key: Change snake head direction to go up (only when snake head direction is pointing left or right)
 * S-key/Down arrow key: Change snake head direction to go down (only when snake head direction is pointing left or right)
 * A-key/Left arrow key: Change snake head direction to go left (only when snake head direction is pointing up or down)
 * D-key/Right arrow key: Change snake head direction to go right (only when snake head direction is pointing up or down)
+* M-key: Return to main menu (only when on game over screen)
+* R-key: Restart a new game (only when on game over screen)
 
 ## TODO List
 
