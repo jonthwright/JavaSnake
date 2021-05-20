@@ -29,8 +29,8 @@ The following controls that are required to play the game includes:
 
 Things that need to be done, but not limited to:
 
-* Fix controls to prevent quick succession of inputs when controlling snake
-* Possibly include a feature that makes the snake's movement faster after a certain amount of fruit is eaten
+* ~~Fix controls to prevent quick succession of inputs when controlling snake~~
+* ~~Possibly include a feature that makes the snake's movement faster after a certain amount of fruit is eaten~~
 * Possibly add a restart game functionality
 * Testing and checking for potential bugs
 
