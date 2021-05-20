@@ -13,13 +13,13 @@ The game will continue as long as the snake doesn't encounters two situations:
 
 The goal is to last as long as possible and get the highest score possible (the number of fruits eaten).
 
-The snake will elongate each time a fruit is eaten. 
+The snake will elongate each time a fruit is eaten and will move faster after a certain amount of fruit is eaten.
 
 ## How to play
 
 The following controls that are required to play the game includes:
 
-* Spacebar : Start game (only when on the main menu)
+* Spacebar or Arrow keys or WASD keys: Start game (only when on the main menu)
 * W-key/Up arrow key: Change snake head direction to go up (only when snake head direction is pointing left or right)
 * S-key/Down arrow key: Change snake head direction to go down (only when snake head direction is pointing left or right)
 * A-key/Left arrow key: Change snake head direction to go left (only when snake head direction is pointing up or down)
