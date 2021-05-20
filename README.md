@@ -29,9 +29,10 @@ The following controls that are required to play the game includes:
 
 Things that need to be done, but not limited to:
 
+* ~~Add various game logic and mechanics~~
+* ~~Add Graphical User Interface of the game~~
 * ~~Fix controls to prevent quick succession of inputs when controlling snake~~
 * ~~Possibly include a feature that makes the snake's movement faster after a certain amount of fruit is eaten~~
-* Possibly add a restart game functionality
+* ~Possibly add a restart game functionality~~
+* Major code clean-up: look for ways how to make the source code to be a lot cleaner than it's current state, specifically the Game.java and GameGraphics.java files
 * Testing and checking for potential bugs
-
-_Some points are subject to change._

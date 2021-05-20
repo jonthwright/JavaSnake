@@ -83,7 +83,7 @@ public class Game implements KeyListener {
 		final int KEY = e.getKeyCode();
 		final Movement SNAKE_DIR = this.snake.getSnakeDirection();
 
-		if (this.gameGFX.getGameState() == GameState.START && (KEY == KeyEvent.VK_SPACE || KEY == KeyEvent.VK_W
+		if (this.gameGFX.getGameState() == GameState.MENU && (KEY == KeyEvent.VK_SPACE || KEY == KeyEvent.VK_W
 				|| KEY == KeyEvent.VK_UP || KEY == KeyEvent.VK_S || KEY == KeyEvent.VK_DOWN || KEY == KeyEvent.VK_A
 				|| KEY == KeyEvent.VK_LEFT || KEY == KeyEvent.VK_D || KEY == KeyEvent.VK_RIGHT)) {
 			this.gameGFX.setGameState(GameState.RUNNING);
@@ -102,6 +102,18 @@ public class Game implements KeyListener {
 				this.snake.setSnakeDirection(Movement.RIGHT);
 		}
 		
+		if (this.gameGFX.getGameState() == GameState.GAMEOVER) {
+			this.gameGFX.setSnake(this.snake = new Snake());
+			this.gameGFX.setFruit(this.fruit = new Fruit(this.snake));
+			this.gameGFX.setTimer(this.timerTime = 150);
+			
+			if (KEY == KeyEvent.VK_R) {
+				this.gameGFX.setGameState(GameState.RUNNING);
+				this.snake.setSnakeDirection(Movement.RIGHT);
+			} else if (KEY == KeyEvent.VK_M) {
+				this.gameGFX.setGameState(GameState.MENU);
+			}
+		}
 	}
 	
 	@Override

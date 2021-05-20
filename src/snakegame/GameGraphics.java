@@ -11,15 +11,16 @@ public class GameGraphics extends JPanel implements ActionListener {
 	private Timer timer;
 	private Snake snake;
 	private Fruit fruit;
-	private Game game;
 	private GameState gameState;
+
+	private Game game;
 
 	public GameGraphics(Game game, int timerTime) {
 		this.timer = new Timer(timerTime, this);
 		this.timer.start();
 		
 		this.game = game;
-		this.gameState = GameState.START;
+		this.gameState = GameState.MENU;
 		
 		this.snake = game.getSnake();
 		this.fruit = game.getFruit();
@@ -38,7 +39,7 @@ public class GameGraphics extends JPanel implements ActionListener {
 		Graphics2D g2d = (Graphics2D) gfx;
 		g2d.setFont(new Font("Dialog", Font.BOLD,14));
 		
-		if (this.gameState == GameState.START) {
+		if (this.gameState == GameState.MENU) {
 			g2d.setColor(Color.WHITE);
 
 			String mainMenu = "CONTROLS: ARROW KEYS OR WASD KEYS\n\n\nPRESS [SPACE BAR]\nOR CONTROL KEYS TO START";
@@ -67,8 +68,10 @@ public class GameGraphics extends JPanel implements ActionListener {
 			final int FRUIT_EATEN = this.fruit.getFruitEaten();
 
 			String gameoverText = "THE SNAKE SCORED " + FRUIT_EATEN + " FRUIT" + ((FRUIT_EATEN != 1) ? "S" : "");
+			gameoverText += "\n\n\nPRESS M: GO BACK TO MAIN MENU";
+			gameoverText += "\nPRESS R: START A NEW GAME IMMEDIATELY";
+			
 			drawCentredString(g2d, gameoverText, 0, 0, WIDTH, HEIGHT);
-			return;
 		}
 	}
 	
@@ -88,10 +91,11 @@ public class GameGraphics extends JPanel implements ActionListener {
 			g2d.drawString(line, TEXT_POS_X, TEXT_POS_Y += LINE_HEIGHT);
 	}
 	
-	private static String getLongestString(String[] array) {
+	private static String getLongestString(String[] strings) {
 		int maxLength = 0;
 		String longestString = "";
-		for (String s : array) {
+
+		for (String s : strings) {
 			if (s.length() > maxLength) {
 				maxLength = s.length();
 				longestString = s;
@@ -107,6 +111,10 @@ public class GameGraphics extends JPanel implements ActionListener {
 		game.update();
 	}
 	
+	public void setSnake(Snake snake) {
+		this.snake = snake;
+	}
+	
 	public void setGameState(GameState gs) {
 		this.gameState = gs;
 	}
@@ -119,4 +127,7 @@ public class GameGraphics extends JPanel implements ActionListener {
 		this.timer.setDelay(milliseconds);
 	}
 	
+	public void setFruit(Fruit fruit) {
+		this.fruit = fruit;
+	}
 }
