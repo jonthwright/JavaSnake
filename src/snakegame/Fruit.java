@@ -19,11 +19,11 @@ public class Fruit {
 		
 		while (!onSnake) {
 			onSnake = true;
-			x = random.nextInt(Game.WIDTH - 2) + 1;
-			y = random.nextInt(Game.HEIGHT - 2) + 1;
+			x = random.nextInt(Game.WIDTH - 1) * Game.DIM;
+			y = random.nextInt(Game.HEIGHT - 1) * Game.DIM;
 			
-			for (Rectangle rect : snake.getSnakeBody()) {
-				if (rect.x == x && rect.y == y) onSnake = false;
+			for (Rectangle sbod : snake.getSnakeBody()) {
+				if (sbod.x == x && sbod.y == y) onSnake = false;
 			}
 		}
 	}
