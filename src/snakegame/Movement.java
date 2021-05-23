@@ -1,5 +1,5 @@
 package snakegame;
 
 public enum Movement {
-	FROZEN, UP, DOWN, LEFT, RIGHT;
+	FROZEN, UP, DOWN, LEFT, RIGHT
 }

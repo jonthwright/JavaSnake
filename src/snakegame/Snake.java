@@ -52,19 +52,41 @@ public class Snake {
 		return this.snakeDirection;
 	}
 	
-	public void setSnakeDirection(Movement newSnakeDir) {
+	public void setSnakeMovement(Movement newSnakeMov) {
 		//If snake is moving (i.e., not start at game and not frozen), check validity of new snake direction movement
 		//Enables snake to automatically start moving once a game has started
 		if (this.snakeDirection != Movement.FROZEN) {
 			Rectangle head = this.getSnakeHead(), firstBodySec = this.snakeBody.get(1);
 			
 			//Don't change snake movement to a horizontal movement (x-axis) if vertical movement (y-axis) hasn't changed
-			if ((newSnakeDir == Movement.LEFT || newSnakeDir == Movement.RIGHT) && head.y == firstBodySec.y) return;
+			if ((newSnakeMov == Movement.LEFT || newSnakeMov == Movement.RIGHT) && head.y == firstBodySec.y) return;
 
 			//Don't change snake movement to a vertical movement (y-axis) if horizontal movement (x-axis) hasn't changed
-			if ((newSnakeDir == Movement.UP || newSnakeDir == Movement.DOWN) && head.x == firstBodySec.x) return;
+			if ((newSnakeMov == Movement.UP || newSnakeMov == Movement.DOWN) && head.x == firstBodySec.x) return;
 		}
 		
-		this.snakeDirection = newSnakeDir;
+		this.snakeDirection = newSnakeMov;
 	}
+	
+	public boolean collideWall() {
+		Rectangle snakeHead = getSnakeHead();
+		return snakeHead.x < 0 || snakeHead.x >= Game.WIDTH * Game.DIM || snakeHead.y < 0 || snakeHead.y >= Game.HEIGHT * Game.DIM;
+	}
+	
+	public boolean collideFruit(Fruit fruit) {
+		Rectangle snakeHead = getSnakeHead();
+		return snakeHead.x == fruit.x && snakeHead.y == fruit.y;
+	}
+	
+	public boolean collideWithSelf() {
+		Rectangle head = getSnakeHead();
+		
+		for (int i = 1; i < this.snakeBody.size(); ++i) {
+			Rectangle body = this.snakeBody.get(i);
+			if (head.x == body.x && head.y == body.y) return true;
+		}
+		
+		return false;
+	}
+	
 }

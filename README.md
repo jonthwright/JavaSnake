@@ -24,6 +24,7 @@ The following controls that are required to play the game includes:
 * S-key/Down arrow key: Change snake head direction to go down (only when snake head direction is pointing left or right)
 * A-key/Left arrow key: Change snake head direction to go left (only when snake head direction is pointing up or down)
 * D-key/Right arrow key: Change snake head direction to go right (only when snake head direction is pointing up or down)
+* Spacebar or P-key: Pause or unpause the game (only when playing a game)
 * M-key: Return to main menu (only when on game over screen)
 * R-key: Restart a new game (only when on game over screen)
 
@@ -36,5 +37,6 @@ Things that need to be done, but not limited to:
 * ~~Fix controls to prevent quick succession of inputs when controlling snake~~
 * ~~Possibly include a feature that makes the snake's movement faster after a certain amount of fruit is eaten~~
 * ~~Possibly add a restart game functionality~~
+* ~~Add pause functionality~~
 * Major code clean-up: look for ways how to make the source code to be a lot cleaner than it's current state, specifically the Game.java and GameGraphics.java files
 * Testing and checking for potential bugs
