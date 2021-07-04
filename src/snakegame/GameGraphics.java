@@ -8,11 +8,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public class GameGraphics extends JPanel implements ActionListener {
-	private Timer timer;
+	final private Timer timer;
 	private Snake snake;
 	private Fruit fruit;
 	private GameState gameState;
-	private Game game;
+	final private Game game;
 
 	public GameGraphics(Game game) {
 		this.timer = new Timer(150, this);
@@ -80,17 +80,17 @@ public class GameGraphics extends JPanel implements ActionListener {
 		}
 	}
 	
-	private void drawCentredString(final Graphics2D g2d, final String string, int x, int y, int WIDTH, int HEIGHT, Font font) {
+	private void drawCentredString(final Graphics2D g2d, final String string, final int X, final int Y, final int WIDTH, final int HEIGHT, final Font FONT) {
 
 		String[] strings = string.split("\n");
-		g2d.setFont(font);
-		FontMetrics fm = g2d.getFontMetrics(font);
+		g2d.setFont(FONT);
+		FontMetrics fm = g2d.getFontMetrics(FONT);
 
 		Rectangle2D rect = fm.getStringBounds(getLongestString(strings), g2d);
 
 		final int TEXT_WIDTH = (int) rect.getWidth(), TEXT_HEIGHT = (int) rect.getHeight();
-		int TEXT_POS_X = x + (WIDTH - TEXT_WIDTH) / 2;
-		int TEXT_POS_Y = y + (HEIGHT - TEXT_HEIGHT * strings.length) / 2 + fm.getAscent();
+		int TEXT_POS_X = X + (WIDTH - TEXT_WIDTH) / 2;
+		int TEXT_POS_Y = Y + (HEIGHT - TEXT_HEIGHT * strings.length) / 2 + fm.getAscent();
 
 		final int LINE_HEIGHT = fm.getHeight();
 
